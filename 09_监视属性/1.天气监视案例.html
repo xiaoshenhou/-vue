@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../vue/vue.js"></script>
+</head>
+<body>
+     <div class="ming">
+         <h2>今天天气很{{info}}</h2>
+         <!-- 事件处理的引号中除了写methods的函数名，还可以写一些简易的短语句 -->
+         <button @click = "changeWeather">切换天气</button>
+     </div>
+
+     <script>
+         Vue.config.productionTip = false
+        const vm = new Vue({
+            el:'.ming',
+            data:{
+                isHot:true
+            },
+            methods: {
+                changeWeather(){
+                    this.isHot = !this.isHot
+                    alert(document.querySelector("h2"))
+                }
+            },
+            computed:{
+                info(){
+                    return this.isHot ? "炎热":"凉爽"
+                }
+            }
+          })
+     </script>
+    
+</body>
+</html>

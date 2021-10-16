@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../vue/vue.js"></script>
+</head>
+<body>
+    <!-- 
+        本次总结
+             事件类型的使用
+                 1.使用v-on:xxx或者@xxx绑定事件，其中xxx是事件名
+                 2.事件的回调需要配配置在methods对象里，最终会在vm上
+                 3.methods中配置的函数，不要用箭头函数会把this指向从vm改编为window
+                 4.methods中配置的函数，都是被Vue所管理的函数，this指向是vm或组件的实例对象
+                 5.@xxx="yyy"和@xxx="yyy($event,要传的参数)"效果一致，但后者可以传参
+     -->
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h2>{{txt}}，你在哪儿呢</h2>
+        <!-- 绑定事件用一个指令叫做v-on： -->
+        <!-- 这个v-on:xxx="yyy"是绑定一个函数为yyy的一个xxx事件， 且调用这个函数，
+        这个函数名是接收配置项method里面的值 -->
+        <button v-on:click="showInFo($event,66)">点我提示信息</button>
+    </div>
+</body>
+    <script type="text/javascript">
+       Vue.config.productionTip = false//z阻止vue提示
+       
+       new Vue({
+          el:'#root',
+          data:{txt:"我喜欢你",},
+          methods:{
+              showInFo(e,n){
+                  alert('我在这儿亲爱的')
+                  console.log(e)
+                  console.log(n)
+              }
+          }//是专门存放对象的事件函数的
+        })
+    </script>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    <!-- 本次总结
+              v-for指令:
+                 1.用于展示列表数据
+                 2.语法：v-for="(item,index) in xxx :key"
+                 3.可遍历：数组、对象、字符串(用的很少)、指定次数(用的很少)-->
+    <div id="root">
+
+        <h2>人员列表(对数组的一个遍历)</h2>
+        <ul>
+            <!-- v-for就像是对data里的一个数组进行遍历,(这个括号里第一个参数就是数组每一项，第二个就是数组每一项的索引值)，in后面跟数组名，但要记住，这个遍历在使用时 一定要给每一个标签一个key值，一般都用索引值或者id值 -->
+            <li v-for="(p,index) in persons" v-bind:key="p.id">{{p.id}}-{{p.name}}-{{p.age}}</li>
+        </ul>
+
+        <h2>汽车品牌(对对象的一个遍历)</h2>
+        <!-- 也可以遍历对象，那么括号里第一个参数就是value值，第二个就是key值 -->
+        <ul>
+            <li v-for="(v,k) in car">{{v}}--{{k}}</li>
+        </ul>
+
+        <h2>单词(对字符串的一个遍历)</h2>
+        <!-- 也可以遍历字符串，那么括号里第一个参数就是每一个字符，第二个就是每一个字符的索引 -->
+        <ul>
+            <li v-for="(a,b) in str">{{a}}--{{b}}</li>
+        </ul>
+        
+        <h2>数字(对指定次数的遍历)</h2>
+        <!-- 也可以遍历指定次数，那么括号里第一个参数就是次数的每一项，第二个就是每一项的索引 -->
+        <ul>
+            <li v-for="(a,b) in 5">{{a}}--{{b}}</li>
+        </ul>
+
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        new Vue({
+           el:'#root',
+           data:{
+               str:"woxihuanni",
+               persons:[
+                   {id:'001',name:"张三",age:18},
+                   {id:'002',name:"李四",age:19},
+                   {id:'003',name:"王五",age:15},
+                ],
+                car:{
+                   奥迪:'100万',
+                   劳斯莱斯:"200万",
+                   兰博基尼:"300万"
+                }
+           }
+         })
+    </script>
+    
+</body>
+</html>

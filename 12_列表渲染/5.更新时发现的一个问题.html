@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    
+    <div id="root">
+
+        <h2>人员列表</h2>
+       <button @click="setImage">更新马冬梅信息</button>
+        <ul>
+           
+            <li v-for="(p,index) in persons" v-bind:key="p.id">
+                {{p.name}}-{{p.age}}-{{p.sex}}
+            </li>
+        </ul>
+
+
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+    
+        
+        new Vue({
+           el:'#root',
+           data:{
+               persons:[
+                   {id:'001',name:"马冬梅",age:18,sex:"女"},
+                   {id:'002',name:"周冬雨",age:19,sex:"女"},
+                   {id:'003',name:"周杰伦",age:15,sex:"男"},
+                   {id:'004',name:"温兆伦",age:15,sex:"男"},
+                ],
+                
+           },
+          methods:{
+               setImage(){
+                //第一种修改
+                // this.persons[0].name='马保国'
+                // this.persons[0].age=60
+                // this.persons[0].sex='人妖'
+                //第二种修改
+                this.persons[3] = {id:'004',name:'吴亦凡',age:29,sex:"太监"}
+                // 你会发现第二种它修改后vue无法检测到，所以没有作用，但是这两个放在一起就可以正常用了，具体原因就得了解下节的vue监测数据原理
+               }
+          }
+          
+           
+         })
+    
+    </script>
+    
+</body>
+</html>

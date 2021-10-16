@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .basic{
+            box-sizing: border-box;
+            width: 200px;
+            height: 200px;
+            display: table-cell;
+            vertical-align: middle;
+            border: 1px solid black;
+
+        }
+        .a{
+            background-color: red;
+        }
+        .b{
+            background-color: orange;
+        }
+        .c{
+            background-color: green;
+        }
+        .basic2{
+            border: 3px solid #333;
+
+        }
+        .basic3{
+            border-radius: 10px;
+            font-size: 30px;
+            color: gold;
+        }
+        .basic4{
+            background-image: linear-gradient(red,orange,yellow);
+        }
+    </style>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../vue/vue.js"></script>
+</head>
+<body>
+    <!-- 本次总结
+            条件渲染
+                1.v-if
+                    写法：
+                       (1).v-if="表达式"
+                       (2).v-else="表达式"
+                       (3).v-else="表达式"
+                    适用于：切换频率低的场景
+                    特点:不展示的DOM元素直接移除
+                    注意:v-if可以和v-else-if、v-else一起使用,但是要求结构不能被打断
+
+                2.v-show
+                    写法：v-show="表达式"
+                    适用于:切换频率高的场景
+                    特点:不展示的DOM元素未被移除掉，仅仅是隐藏
+                
+                3.备注：使用v-if的时候，元素可能无法获取，而使用v-show一定可以获取
+                      -->
+    <div class="ming">
+        <!-- 使用 -->
+        <h1 v-show="false">{{name}}</h1>   
+        <h1 v-if="a==1">{{name}}</h1> 
+        <h1 v-else>{{name2}}</h1> 
+
+               
+    </div>
+
+     <script>
+         Vue.config.productionTip = false
+         
+        const vm = new Vue({
+            el:'.ming',
+            data:{
+               name:"忘川之畔与君长相思，烂泥之中与君发相缠",
+               name2:"丢失了",
+               a:1,
+            },
+            methods: {
+                changeMood(){
+                    console.log('我发生了变化')
+                   const arr = ['a',"b","c"]
+                   this.mood =arr[Math.floor(Math.random()*3)]
+                }
+            },
+            
+          })
+     </script>
+    
+</body>
+</html>

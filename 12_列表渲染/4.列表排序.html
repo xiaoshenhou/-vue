@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    
+    <div id="root">
+
+        <h2>人员列表</h2>
+        <input type="text" v-model:value="keyWord">
+        <button @click="sortType=2">年龄升序</button>
+        <button @click="sortType=1">年龄降序</button>
+        <button @click="sortType=0">原顺序</button>
+        <ul>
+            <!-- v-for就像是对data里的一个数组进行遍历,(这个括号里第一个参数就是数组每一项，第二个就是数组每一项的索引值)，in后面跟数组名，但要记住，这个遍历在使用时 一定要给每一个标签一个key值，一般都用索引值或者id值 -->
+            <li v-for="(p,index) in filPersons" v-bind:key="p.id">
+                {{p.name}}-{{p.age}}-{{p.sex}}
+            </li>
+        </ul>
+
+
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+    //    用watch实现
+        // new Vue({
+        //    el:'#root',
+        //    data:{
+        //        str:"woxihuanni",
+        //        keyWord:'',
+        //        persons:[
+        //            {id:'001',name:"马冬梅",age:18,sex:"女"},
+        //            {id:'002',name:"周冬雨",age:19,sex:"女"},
+        //            {id:'003',name:"周杰伦",age:15,sex:"男"},
+        //            {id:'004',name:"温兆伦",age:15,sex:"男"},
+        //         ],
+        //         filPersons:[]
+        //    },
+        //    computed:{},
+        //    watch:{
+        //        keyWord:{
+        //            immediate:true,
+        //            handler(s,o){
+        //             console.log('keyWord被改了')
+                    
+        //            this.filPersons = this.persons.filter((p)=>{
+        //                 return p.name.indexOf(s) !== -1
+        //             })
+                    
+        //        }}
+        //    }
+        //  })
+        // 使用使用计算属性
+        new Vue({
+           el:'#root',
+           data:{
+               str:"woxihuanni",
+               keyWord:'',
+               sortType:0,
+               persons:[
+                   {id:'001',name:"马冬梅",age:18,sex:"女"},
+                   {id:'002',name:"周冬雨",age:19,sex:"女"},
+                   {id:'003',name:"周杰伦",age:15,sex:"男"},
+                   {id:'004',name:"温兆伦",age:15,sex:"男"},
+                ],
+                
+           },
+           computed:{
+               filPersons(){
+                   const arr = this.persons.filter((p)=>{
+                      return p.name.indexOf(this.keyWord)!==-1
+                   })
+                   if(this.sortType){
+                       arr.sort((p1,p2)=>{
+                           return this.sortType ===1?p2.age-p1.age:p1.age-p2.age
+                       })
+                   }
+                   return arr
+               }
+           },
+          
+           
+         })
+    
+    </script>
+    
+</body>
+</html>

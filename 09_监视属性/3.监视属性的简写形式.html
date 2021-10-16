@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../vue/vue.js"></script>
+</head>
+<body>
+    
+     <div class="ming">
+          <h1>{{numbers.a}}</h1>
+          <h1>{{numbers.b.c}}</h1>
+         <button @click = "numbers.a++">a点我加1</button>
+         <button @click = "numbers.b.c++">c点我加1</button>
+     </div>
+
+     <script>
+         Vue.config.productionTip = false
+        const vm = new Vue({
+            el:'.ming',
+            data:{
+                numbers:{
+                    a:1,
+                    b:{
+                        c:1
+                    },
+                }
+            },
+           
+            
+            watch:{
+                numbers:{
+                    immediate:true,//初始化时让handler调用一下
+                    deep:true,//深层监视，就是直接可以监视到多级(也就是对象里套用对象)里每一个属性的变化
+                    handler(newValue,oldValue){
+                        console.log(newValue.a)
+                        console.log(newValue.b.c)
+                    }
+                },
+                // 既然简写就是不需要其他配置项，只要一个handler函数时可以简写为以下这种
+                numbers(){
+
+                }
+            },
+            
+        })
+
+
+     </script>
+    
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>    
+    <div id="root">
+        
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        const student = {
+            template:`<div>
+            <hr>
+            <h2 :style="{fontFamily:ziTi}">学生信息:</h2>
+            <h2>学生姓名：{{name}}</h2>
+            <h2>学生年龄：{{age}}</h2>
+            <h2>学生喜欢的女孩：
+                <ul>
+                    <li v-for="(I,index) in myLover" :key="I.id">
+                        {{I.name}} -- {{I.age}}
+                    </li>
+                </ul>
+            </h2>
+        </div>`,
+            data(){
+                return {
+                    ziTi:"黑体",
+                    name: "李培松",
+                    age:18,
+                    myLover:[
+                        {id:001,name:"高瑞丽",age:21},
+                        {id:002,name:"郭瑞瑾",age:21},
+                        {id:003,name:"李盼盼",age:21},
+                        {id:004,name:"李明",age:24},
+                    ]
+                }
+            }
+        }
+        const school = {
+            template:`<div>
+            <h2>学校名字：{{Xname}}</h2>
+            <h2>学校地址：{{Xaddress}}</h2>
+            <student1></student1>
+        </div>`,
+            data(){
+                return {
+                    Xaddress:"河南省新乡是长垣县",
+                    Xname:"长垣一中"
+                }
+            },
+            components:{
+                 student1:student
+            }
+        }
+        const App = Vue.extend({
+            template:`<school></school>`,
+            components:{
+                school:school,
+            }
+        })
+        new Vue({
+           el:'#root',
+           template:`<App></App>
+        `,
+           components:{
+               App
+               
+           }
+         })
+         console.dir(school)
+    </script>
+    
+</body>
+</html>

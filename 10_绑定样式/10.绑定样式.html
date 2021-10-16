@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .basic{
+            box-sizing: border-box;
+            width: 200px;
+            height: 200px;
+            display: table-cell;
+            vertical-align: middle;
+            border: 1px solid black;
+
+        }
+        .a{
+            background-color: red;
+        }
+        .b{
+            background-color: orange;
+        }
+        .c{
+            background-color: green;
+        }
+        .basic2{
+            border: 3px solid #333;
+
+        }
+        .basic3{
+            border-radius: 10px;
+            font-size: 30px;
+            color: gold;
+        }
+        .basic4{
+            background-image: linear-gradient(red,orange,yellow);
+        }
+    </style>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../vue/vue.js"></script>
+</head>
+<body>
+    <!-- 本次总结
+              绑定样式：
+                  1.calss样式
+                        写法:class="xxx" xxx可以是字符串，对象，数组
+                             字符串写法适用于:样式的类名不确定，需要动态去指定 
+                             对象写法适用于:要绑定的样式个数不确定、名字也不确定
+                             数组写法适用于:要绑定的样式个数确定、名字也确定，但要东台决定用不用
+                             
+                  2.style样式
+                             :style="{fontSize:xxx}"其中xxx是动态值，存于data里的属性
+                             :style="[a,b]"其中a、b是样式对象
+                      -->
+     <div class="ming">
+            <!-- 绑定class样式之---字符串写法，适用于：样式的类名不确定，需要动态去指定 -->
+            <div class="basic":class="mood" @click="changeMood">{{name}}</div><br>
+            <!-- 绑定class样式之---数组写法，适用于：要绑定的样式个数不确定、名字也不确定 -->
+            <div class="basic":class="classArr">{{name}}</div><br>
+            <!-- 绑定class样式之---对象写法，适用于：要绑定的样式个数确定、名字也确定，但要动态决定用不用 -->
+            <div class="basic":class="Obj">{{name}}</div><br>
+            <!-- 直接绑定style属性 -->
+               <!-- 这是第一种写法：就是直接在里面写表达式，把data里的属性引出来 -->
+               <div class="basic" :style="{fontSize:fs+'px'}">{{name}}</div><br>
+               <!-- 第二种写法：就是直接写对象名，然后在data里配置对象 -->
+               <div class="basic" :style="Obj2">{{name}}</div><br>
+               <!-- 第三种写法：就是用数组，将配置好的对象都写在一个数组中，将数组引进dom里 -->
+               <div class="basic" :style="objArr">{{name}}</div><br>
+               
+    </div>
+
+     <script>
+         Vue.config.productionTip = false
+        const vm = new Vue({
+            el:'.ming',
+            data:{
+               name:"忘川之畔与君长相思，烂泥之中与君发相缠",
+               mood:"a",
+               classArr:[
+                   'basic2','basic3'
+                ],
+               Obj:{
+                   basic2:true,
+                   basic3:true,
+                   basic4:true,
+                },
+                fs:22,
+                Obj2:{
+                    backgroundColor:'skyblue'
+                },
+                Obj3:{
+                    borderRadius:'20px'
+                },
+                objArr:[{
+                    borderRadius:'20px'
+                },{
+                    backgroundColor:'skyblue'
+                },]
+            },
+            methods: {
+                changeMood(){
+                    console.log('我发生了变化')
+                   const arr = ['a',"b","c"]
+                   this.mood =arr[Math.floor(Math.random()*3)]
+                }
+            },
+            
+          })
+     </script>
+    
+</body>
+</html>

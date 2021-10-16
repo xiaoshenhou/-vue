@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    <!-- 本次总结
+              vm的生命周期(各个特殊时期的生命周期函数)
+                    将要创建 ===> 调用beforeCreate函数
+                    创建完毕 ===> 调用created函数
+                    将要挂载 ===> 调用beforeMount函数
+                    挂载完毕 ===> 调用mounted函数
+                    将要更新 ===> 调用beforeUpdate函数
+                    更新完毕 ===> 调用uodated函数
+                    将要销毁 ===> 调用beforeDestroy函数
+                    销毁完毕 ===> 调用destroyed函数
+
+    <div id="root">
+        <h2>当前的值是{{n}}</h2>
+    </div>
+    <script type="text/javascript">
+    Vue.config.productionTip=false
+      new Vue({
+         el:'#root',
+         data:{
+            name:"明姐",
+            tmd:1,
+            n:1
+         },
+        
+        
+       })
+    </script>
+</body>
+</html>

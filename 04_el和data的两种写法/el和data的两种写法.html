@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识vue</title>
+     <link rel="icon" href="../photo/favicon.ico">
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../vue/vue.js"></script>
+    <!-- 
+        本次总结
+              data与el的两种写法
+                   1.el有两种写法
+                       (1).new Vue时候配置el属性
+                       (2).县创建Vue实例，随后再通过v.$mount('选择器值')指定el的值
+                       如何选择：随意选择，都可以
+                   2.data有两种写法
+                       (1).对象式
+                       (2).函数式
+                       如何选择:目前那个都行，以后学习到组件时，data必须使用函数式，否则会报错
+                   3.一个重要原则
+                         由Vue管理的函数，一定不要写箭头函数，一旦写了，就会改变this指向，他的this就会从实例对象变成window
+     -->
+</head>
+<body>
+
+    <div id="li">
+        <h1>你好,{{name}}！</h1>
+    </div>
+    <script>
+        Vue.config.productionTip = false//阻止vue启动时生成的生产提示
+       const v =  new Vue({
+        //    el:'#li',这是el的第一种写法
+        //    data:{name:"我喜欢你"},//对象式:这是data的第一种写法
+              data:function(){//函数式:这是函数式:这是data第二种写法
+                    console.log(this)//此处的this是实例对象
+                    return{
+                        name:"我喜欢你"
+                    }
+              }
+         })
+        v.$mount('#li')//这是el的第二种写法
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        Vue这个构造函数的prototype指向的就是Vue的原型对象，Vue创造出的实例对象vm的__proto__也是指向Vue的原型对象,那么Vue原型对象也是一个对象，那么他的__proto__指向Object的原型对象
+
+        VueComponent这个构造函数的prototype指向的就是VueComponent的原型对象，VueComponent创造出的实例对象vc的__proto__也是指向VueComponent的原型对象，那么VueComponent的原型对象也是个对象，他的__proto__也指向了Object的原型对象
+
+        上面是vc和vm的原型链
+
+        至于她们之间的内置关系，Vue把VueComponent的原型对象的__proto__的指向由Object的原型对象改为了Vue的原型对象
+        所以vc可以访问到vm里人和数据
+     -->
+</body>
+</html>

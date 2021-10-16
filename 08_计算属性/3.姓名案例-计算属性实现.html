@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../vue/vue.js"></script>
+</head>
+<body>
+    <!-- 
+        本次总结
+            计算属性:
+               1.定义:要用的属性不存在，要通过已有的属性计算得来
+               2.原理:底层借助了Object.defineProperty方法提供的getter和setter
+               3.get函数什么时候执行?
+                     (1).初次读取时会执行一次
+                     (2).当依赖的数据发生改变时会再次调用
+               4.优势:与methods实现向比，内部有换粗机制，效率更高，调式方便
+               5.备注：
+                     (1).计算属性最终会出现在vm上，直接读取即可
+                     (2).如果计算属性要被修改，那必须写set函数去响应修改，且set中要引起计算时依赖数据的发生改变
+     -->
+     <div class="ming">
+         姓：<input type="text" v-model="firstname"><br/><br/>
+         名：<input type="text" v-model="lastname"><br/><br/>
+         姓名：<span>{{fullname}}</span>
+     </div> 
+
+     <script>
+         Vue.config.productionTip = false
+         const vm =new Vue({
+            el:'.ming',
+            /* 这是普通属性 */
+            data:{
+                firstname:"张",
+                lastname:"三",
+            },
+            /* 这是计算属性:这里面的用法和数据代理里Object.defineProperty里的get和set一样。
+            在你读取这个计算属性时，会自动调用get函数,然后将get函数的返回值给该属性然后在传给你调用的地方 */
+            /* 当你在dom里多次读取时，它会在第一次把数据给储存下来，后面的就直接从储存里拿出来给你，就不用再调用get函数了
+            但这也会有一个问题，因为这样回导致你已经改变了值后，后面的不按照改变的来，这样Vue也发现了，所以在你所以来计算的值如果发生改变，会再次调用get函数 */
+            computed:{
+                /* 这是完整写法 */
+                /* fullname:{
+                    get(){
+                       return this.firstname.slice(0,3)+""+this.lastname
+                    },
+                    set(value){
+                        console.log("我被修改了，值为",value)
+                       const arr = value.split("-")
+                       this.firstname = arr[0]
+                       this.lastname = arr[1]
+                    }
+                }, */
+                /* 这是简写写法
+                       -因为一般我们用这个，都不会去修改他的值了，所以一般set函数可以省略
+                       -省略后就是   计算属性名:{get(){}} ,
+                       -上面这种还可以简写成，计算属性名：get(){}
+                       -还可以简写为，计算属性名:function(){}
+                       -最终写成 ， 计算属性名(){}*/
+                       fullname(){
+                       return this.firstname.slice(0,3)+"-"+this.lastname
+                       }  
+            }
+          })
+     </script>
+    
+</body>
+</html>

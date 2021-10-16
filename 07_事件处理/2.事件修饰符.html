@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../vue/vue.js"></script>
+</head>
+<body>
+    <!-- 
+        本次总结
+            Vue中的事件修饰符
+                1.prevent:阻止默认事件(常用)
+                2.stop：阻止冒泡(常用)
+                3.once事件只触发一次(常用)
+                4.capture：使用事件捕获模式
+                5.self只有event.target是当前操作的元素才触发事件
+                6.passive:事件的默认型为立即执行，无需等待事件回调执行完毕
+             注意：修饰符要多用的话是可以连着写的
+     -->
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <!-- 阻止默认事件 
+                  一个绑定事件后面点一个修饰词，这叫修饰符-->
+        <a href="http://www.baidu.com" @click.prevent="showInFo">点我提示信息</a>
+        <!-- 阻止事件冒泡 -->
+        <div class="demol"@click = "showInFo">
+            <button @click.stop = "showInFo"></button>
+        </div>
+        <!-- 事件只触发一次 -->
+        <button @click. once = "showInFo"></button>
+        <!-- 使用事件捕获 -->
+        <div class="demol"@click = "showInFo">
+            <button @click.capture = "showInFo"></button>
+        </div>
+       <!--只有事件是event.target是当前操作的元素时才触发事件  -->
+       <div class="demol"@click.self = "showInFo">
+        <button @click = "showInFo"></button>
+        
+    </div>
+    </div>
+</body>
+    <script type="text/javascript">
+       Vue.config.productionTip = false//z阻止vue提示
+       
+       new Vue({
+          el:'#root',
+          data:{txt:"我喜欢你",},
+          methods:{
+              showInFo(e){
+                  alert('我在这儿亲爱的')
+                  console.log(e)
+                  
+              }
+          }//是专门存放对象的事件函数的
+        })
+    </script>
+</html>

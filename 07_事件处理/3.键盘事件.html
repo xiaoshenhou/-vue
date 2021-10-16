@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" href="../photo/favicon.ico">
+    <script src="../vue/vue.js"></script>
+
+    <!-- 
+        本次总结：
+        1.Vue中常见的按键别名：
+                回车 = enter
+                删除 = delete(捕获"删除"和"退格"键)
+                退出 = esc
+                空格 = space
+                换行 = tab(特殊，必须配合keydown)
+                上 = up
+                下 = down
+                左 = left
+                右 = right
+          什么叫按键别名呢
+                 @keyup.enter="xxx"就像这行代码，他的意思是绑定一个函数名为xxx的键盘实践中的keyup(也就是按下事件)事件，按下哪个键来触发这个函数呢，Vue内部就定义了一些别名为键盘按键常用的就在下方，这些别名就写在(.)点的后面
+        
+        2.Vue未提供的别名按键，可以使用按键原始的key值去绑定，但注意要转为短横线命名法(也就是有两个单词，必须都是小写且中间用段横线隔开)
+
+        3.系统修饰键(用法特殊):ctrl alt shift meta
+               (1)配合keyup使用，按下修饰键的同时，再按下其他随意的一个键，事件才会被触发
+               (2)配合keydown使用，正常触发事件
+
+        4.也可以使用keyCode去指定具体按键(不推荐)
+
+        5.Vue.config.keyCodes.定义键名 = 键码，可以去定制按键的别名
+     -->
+</head>
+<body>
+    <div id="root">
+        
+       <input type="text" placeholder="请输入" @keyup.enter="li">
+    </div>
+</body>
+    <script>
+        Vue.config.productionTip = false
+
+        new Vue({
+            el:"#root",
+            data:{
+                name:'我喜欢你',
+            },
+            methods:{
+                li(e){
+                    console.log(e.target.value)
+                }
+            }
+        })
+    </script>
+</html>

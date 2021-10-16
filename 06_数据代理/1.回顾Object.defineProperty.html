@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let number = 18
+        let obj ={
+            name:'李培松',
+            sex:"男",
+            /* 一般我们加一个属性都直接在这个位置写 ，或者我们用赋值的方式进行添加，但这样做无法对该属性进行配置*/
+        }
+        
+        /* 这个操作就是为某一个对象生成一个属性，可以直接为该属性设置任何配置 */
+        Object.defineProperty(obj,"age",{
+            //   value:18,//这个是age的值
+            //   enumerable:true,//这个是控制属性是否可以枚举的，默认为false就是不能
+            //   writable:true,//控制熟悉感是否可以被修改，默认为false就是不能
+            //   configurable:true,//控制属性是否可以被删除，默认为false就是不可以
+              
+              get(){
+                  console.log("有人读取了该属性值")
+                   return number
+              },//该函数当有人读取该对象的该属性时，getter(get函数)就会被调用，且返回值就是age的值
+              set(value){
+                  console.log("有人修改了该属性值，且值为",value)
+                  number=value
+              }//当有人修改该对象的该属性是，setter(set函数)就会被调用，且会收到具体值
+        })
+        number = 19
+        console.log(obj)
+    </script>
+</body>
+</html>

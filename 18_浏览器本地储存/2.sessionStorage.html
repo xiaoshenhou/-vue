@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+            浏览器中本地储存有三种方式(localStorage,sessionStorage,cookie)
+                2.sessionStorage 
+                   仅在当前会话下有效，关闭页面或者浏览器后被清除；存放数据大小一般为5MB；
+                   1仅在浏览器中保存，不参与服务器通信；可以接受源生接口，亦可以再次封装来对Object和Array有更好的支持；
+                
+                API:
+                   window.sessionStorage.setItem(key,value)    保存数据
+                   window.sessionStorage.getItem(key)          读取数据
+                   window.sessionStorage.removeItem(key)       删除数据
+                   window.sessionStorage.clear()               清除数据
+
+                   注意：key和value必须是字符串
+                   
+                -->
+</head>
+<body>
+      <h2>sessionStorage</h2>
+      <button onclick="saveDate()">点我保存一个数据</button>
+      <button onclick="getDate()">点我读取一个数据</button>
+      <button onclick="deleteDate()">点我删除一个数据</button>
+      <button onclick="clearDate()">点我清空数据</button>
+    <script >
+       let saveDate = function (){
+             window.sessionStorage.setItem("明姐","我爱你")
+             window.sessionStorage.setItem("李明","我喜欢你")
+         }
+        function getDate(){
+           console.log(window.sessionStorage.getItem("明姐"))
+         }
+        function deleteDate(){
+             window.sessionStorage.removeItem("明姐")
+         }
+        var clearDate=function(){
+             window.sessionStorage.clear()
+         }
+
+    </script>
+</body>
+</html>

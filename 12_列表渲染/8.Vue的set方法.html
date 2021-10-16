@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    <!-- 本次总结
+              v-for指令:
+                 1.用于展示列表数据
+                 2.语法：v-for="(item,index) in xxx :key"
+                 3.可遍历：数组、对象、字符串(用的很少)、指定次数(用的很少)-->
+    <div id="root">
+        <h1>学校信息</h1>
+        <h2>学校名称:{{name}}</h2>
+        <h2>学校地址:{{address}}</h2>
+        <hr>
+        <h1>学生信息</h1>
+        <input type="text" v-model:value="value">
+        <button @click="addSex">点我提交</button>
+        <h2>学生名称:{{student.name}}</h2>
+        <h2 v-if="student.sex">学生性别:{{student. sex}}</h2>
+        <h2>学生年龄:真实{{student.age.rAge}},对外{{student.age.sAge}}</h2>
+        <h2>盆友们</h2>
+        <ul>
+            <li v-for="(f,index) in student.friends" :key="index">
+                {{f.name}}-{{f.age}}
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        new Vue({
+           el:'#root',
+           data:{
+               value:"",
+               name:'尚硅谷',
+               address:'北京',
+               student:{
+                   name:'tom',
+                   age:{
+                       rAge:40,
+                       sAge:29,
+                   },
+                   friends:[
+                       {name:'jerry',age:35},
+                       {name:'tony',age:36}
+                   ]
+               }
+           },
+           methods: {
+               addSex(){
+                  this.$set(this.student,"sex",this.value)
+               }
+           },
+         })
+
+         /* 当你以后发现性别这个忘记在data里写了，或者本来就不用写，需要用户自己添加的，就需要在data里面再增加一个性别属性
+             直接在data里添加肯定不行，因为直接添加的他的值就已经写死了，无法进行get计算的来，也就无法进行vue里面设置好的set调用页面出现响应
+            1.所以vue给我们专门提供了一个set()方法在Vue函数里
+                  =用法：
+                      Vue.set( 你要在谁身上添加属性 , 添加什么属性 , 属性值是什么)
+            2.vm这个实例对象中也有个方法叫$set(),和上面用法完全一样
+            
+            注意:不能在vm实例和vm实例的根数据(data)身上添加响应式属性*/
+    </script>
+    
+</body>
+</html>

